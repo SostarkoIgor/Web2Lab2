@@ -3,8 +3,15 @@ import React, { useEffect } from 'react'
 const XSScomponent : React.FC = () => {
     const [value, setValue] = React.useState<string>('')
     const [isEnabled, setIsEnabled] = React.useState<boolean>(false)
+    const [isLoaded, setIsLoaded] = React.useState<boolean>(false)
     useEffect(() => {
-        const inputParam = new URLSearchParams(window.location.search).get('ime')
+        const inputParam = new URLSearchParams(window.location.search).get('param')
+        if (!isLoaded){
+            const enableXSSparam= new URLSearchParams(window.location.search).get('xss')
+            if (enableXSSparam && enableXSSparam==='enable') setIsEnabled(true)
+            else setIsEnabled(false)
+            setIsLoaded(true)
+        }
         if (inputParam) {
             setValue(inputParam)
             if (isEnabled) {
@@ -17,7 +24,7 @@ const XSScomponent : React.FC = () => {
                         eval(scriptContent[1])
                     }
                     catch(E){
-                        
+
                     }
                 }
                 document.getElementById('output')!.innerHTML = inputParam
@@ -27,40 +34,43 @@ const XSScomponent : React.FC = () => {
         else {
             setValue('')
         }
-    }, [isEnabled, value])
+    }, [isEnabled,value])
     return (
         <div className='container'>
-            <h2 className='title'>XSS</h2>
+            <h2 className='title'>Cross-site scripting (XSS)</h2>
             <div className='explanationContainer'>
-                <p className='explanation'>This is an example of DOM based cross site scripting (XSS) attack</p>
-                <p className='explanation'>The user can change the "ime" parameter of the URL to trigger the attack</p>
+                <p className='explanation'>Ovo je primjer DOM baziranog cross site scripting (XSS) napada</p>
+                <p className='explanation'>Korisnik može promijeniti "param" parametar URL-a i tako izvršiti napad</p>
             </div>
             <div className='exampleContainer'>
                 <p className='example'>
-                    We can show cookie with:
-                    <a href={'https://localhost:5173/?ime=<script>alert(document.cookie)</script>'}>
-                        {'https://localhost:5173/?ime=<script>alert(document.cookie)</script>'}
+                    Možemo pristupiti kolačiću sa:
+                    <a href={'https://localhost:5173/?param=<script>alert(document.cookie)</script>&xss='+(isEnabled?'enable':'disable')}>
+                        {'https://localhost:5173/?param=<script>alert(document.cookie)</script>'}
                     </a>
                 </p>
                 <p className='example'>
-                    Or redirect to a different page:
-                    <a href={'https://localhost:5173/?ime=<script>document.location.href = "https://google.com"</script>'}>
-                        {'https://localhost:5173/?ime=<script>document.location.href = "https://google.com"</script>'}
+                    Ili preusmjeriti na drugu stranicu:
+                    <a href={'https://localhost:5173/?param=<script>document.location.href = "https://google.com"</script>&xss='+(isEnabled?'enable':'disable')}>
+                        {'https://localhost:5173/?param=<script>document.location.href = "https://google.com"</script>'}
                     </a>
                 </p>
             </div>
             <div className='buttonContainer'>
                 <p className='label'>
-                    {isEnabled ? 'XSS is enabled' : 'XSS is disabled'}
+                    {isEnabled ? 'XSS je omogućen' : 'XSS je onemogućen'}
                 </p>
                 <button id='checkbox' name='checkbox' onClick={() => setIsEnabled(!isEnabled)}>
-                    {isEnabled ? 'Disable XSS' : 'Enable XSS'}
+                    {isEnabled ? 'Onemogući XSS' : 'Omogući XSS'}
                 </button>
             </div>
 
             <div className='explanationContainer'>
                 <p className='label'>
-                    P element where we output value of "ime" parameter:
+                    P element u kojem ispisujemo vrijednost parametra "param" je ispod:
+                    <a className='secondaryText'>
+                        Kada je XSS omogućen, nećemo vidjeti dijelove "param"-a koju su između {'<script>'} tagova (i drugih) jer će to postati script html element
+                    </a>
                 </p>
                 <p id='output'>
                     {!isEnabled? value : ''}
