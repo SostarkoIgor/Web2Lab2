@@ -23,10 +23,10 @@ const BrokenAccessControl : React.FC = () =>{
         <div className="container">
             <h2 className="title">Broken Access Control</h2>
             <div className="explanationContainer">
-                <p className="explanation">Ovdje prikazujem ranjivosti gdje korisnik može, mjenjajući broj računa u linku, pristupiti drugim računima, te mjenjajući ulogu u linku pristupiti neovlaštenim resursima.</p>
+                <p className="explanation">Ovdje prikazujem ranjivosti gdje korisnik može, mijenjajući broj računa u linku, pristupiti drugim računima, te mijenjajući ulogu u linku pristupiti neovlaštenim resursima.</p>
                 <p className="explanation">Na početku je ranjivost <b>onemogućena</b>! Može se omogućiti klikom na gumb na kraju teksta.</p>
                 <p className="explanation">Radi jednostavnosti ovdje je simulirano da je prijavljen korisnik 600. Nije implementirana prava prijava korisnika pošto mi se to nije činilo potrebnim za ovu demonstraciju.</p>
-                <p className="explanation">Radi jednostavnosti korištenja i demonstracije se koristi iframe, napravljen da izgleda kao mali browser. Proizvoljni link se upisuje u imput polje u simuliranom browseru te se pretražuje klikom na malo povečalo desno od tog polja.</p>
+                <p className="explanation">Radi jednostavnosti korištenja i demonstracije se koristi iframe, napravljen da izgleda kao mali browser. Proizvoljni link se upisuje u input polje u simuliranom browseru te se pretražuje klikom na malo povećalo desno od tog polja.</p>
                 <p className="explanation">Prvo se prikazuje ranjivost kod koje korisnik promjenom broja računa u linku može pristupiti računima drugih korisnika.</p>
             </div>
             <div className="exampleContainer">
@@ -41,7 +41,7 @@ const BrokenAccessControl : React.FC = () =>{
             </div>
             <div className="explanationContainer">
                 <p className="explanation">
-                    Druga ranjivost je ona kod koje korisnik iz URLa vidi svoju ulogu i to mijenja u neku drugu, poput admin.
+                    Druga ranjivost je ona kod koje korisnik iz URL-a vidi svoju ulogu i to mijenja u neku drugu, poput admin.
                 </p>
             </div>
             <div className="exampleContainer">
