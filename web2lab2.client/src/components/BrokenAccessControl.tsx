@@ -1,8 +1,8 @@
 import React from "react"
 
 const BrokenAccessControl : React.FC = () =>{
-    const [iframeLink, setIframeLink] = React.useState<string>("https://localhost:5173/account?accNumber=600")
-    const [iframeLinkTemp, setIframeLinkTemp] = React.useState<string>("https://localhost:5173/account?accNumber=600")
+    const [iframeLink, setIframeLink] = React.useState<string>("https://web2lab2-l3fi.onrender.com/account?accNumber=600")
+    const [iframeLinkTemp, setIframeLinkTemp] = React.useState<string>("https://web2lab2-l3fi.onrender.com/account?accNumber=600")
     const [isEnabled, setIsEnabled] = React.useState<boolean>(false)
     const iframeRef=React.useRef<HTMLIFrameElement>(null)
     const formatLink = () =>{
@@ -25,11 +25,11 @@ const BrokenAccessControl : React.FC = () =>{
             <div className="exampleContainer">
                 <p className="example">
                     Korisnik vidi svoj račun kroz ovaj link:
-                    <a href="javascript:void(0);" onClick={()=>{setIframeLink(('https://localhost:5173/account?accNumber=600')); setIframeLinkTemp(('https://localhost:5173/account?accNumber=600'))}}>https://localhost:5173/account?accNumber=600</a>
+                    <a href="javascript:void(0);" onClick={()=>{setIframeLink(('https://web2lab2-l3fi.onrender.com/account?accNumber=600')); setIframeLinkTemp(('https://web2lab2-l3fi.onrender.com/account?accNumber=600'))}}>https://web2lab2-l3fi.onrender.com/account?accNumber=600</a>
                 </p>
                 <p className="example">
                     Ali mijenjajući broj računa u linku može pristupiti i drugima, npr.:
-                    <a href="javascript:void(0);" onClick={()=>{setIframeLink(('https://localhost:5173/account?accNumber=601')); setIframeLinkTemp(('https://localhost:5173/account?accNumber=601'))}}>https://localhost:5173/account?accNumber=601</a>
+                    <a href="javascript:void(0);" onClick={()=>{setIframeLink(('https://web2lab2-l3fi.onrender.com/account?accNumber=601')); setIframeLinkTemp(('https://web2lab2-l3fi.onrender.com/account?accNumber=601'))}}>https://web2lab2-l3fi.onrender.com/account?accNumber=601</a>
                 </p>
             </div>
             <div className="explanationContainer">
@@ -40,11 +40,11 @@ const BrokenAccessControl : React.FC = () =>{
             <div className="exampleContainer">
                 <p className="example">
                     Originalni link s kojim korisnik pristupa podatcima kojima treba je ovaj:
-                    <a href="javascript:void(0);" onClick={()=>{setIframeLink('https://localhost:5173/info/user/details'); setIframeLinkTemp(('https://localhost:5173/info/user/details'))}}>https://localhost:5173/info/user/details</a>
+                    <a href="javascript:void(0);" onClick={()=>{setIframeLink('https://web2lab2-l3fi.onrender.com/info/user/details'); setIframeLinkTemp(('https://web2lab2-l3fi.onrender.com/info/user/details'))}}>https://web2lab2-l3fi.onrender.com/info/user/details</a>
                 </p>
                 <p className="example">
                     No on to može promijeniti na nešto drugo, kao na primjer ovo:
-                    <a href="javascript:void(0);" onClick={()=>{setIframeLink('https://localhost:5173/info/admin/details'); setIframeLinkTemp(('https://localhost:5173/info/admin/details'))}}>https://localhost:5173/info/admin/details</a>
+                    <a href="javascript:void(0);" onClick={()=>{setIframeLink('https://web2lab2-l3fi.onrender.com/info/admin/details'); setIframeLinkTemp(('https://web2lab2-l3fi.onrender.com/info/admin/details'))}}>https://web2lab2-l3fi.onrender.com/info/admin/details</a>
                 </p>
             </div>
             <div className='buttonContainer'>

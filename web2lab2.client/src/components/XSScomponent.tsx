@@ -43,14 +43,14 @@ const XSScomponent : React.FC = () => {
             <div className='exampleContainer'>
                 <p className='example'>
                     Možemo pristupiti kolačiću sa:
-                    <a href={'https://localhost:5173/?param=<script>alert(document.cookie)</script>&xss='+(isEnabled?'enable':'disable')}>
-                        {'https://localhost:5173/?param=<script>alert(document.cookie)</script>'}
+                    <a href={'https://web2lab2-l3fi.onrender.com/?param=<script>alert(document.cookie)</script>&xss='+(isEnabled?'enable':'disable')}>
+                        {'https://web2lab2-l3fi.onrender.com/?param=<script>alert(document.cookie)</script>'}
                     </a>
                 </p>
                 <p className='example'>
                     Ili preusmjeriti na drugu stranicu:
-                    <a href={'https://localhost:5173/?param=<script>document.location.href = "https://google.com"</script>&xss='+(isEnabled?'enable':'disable')}>
-                        {'https://localhost:5173/?param=<script>document.location.href = "https://google.com"</script>'}
+                    <a href={'https://web2lab2-l3fi.onrender.com/?param=<script>document.location.href = "https://google.com"</script>&xss='+(isEnabled?'enable':'disable')}>
+                        {'https://web2lab2-l3fi.onrender.com/?param=<script>document.location.href = "https://google.com"</script>'}
                     </a>
                 </p>
             </div>

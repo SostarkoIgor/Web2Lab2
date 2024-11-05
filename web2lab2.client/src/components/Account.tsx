@@ -17,7 +17,7 @@ const Account : React.FC = () =>{
             //if (loggedIn) setLoggedIn(loggedIn=="true")
             try{
                 if (accountNumber==null) return
-                const response=await axios.get("https://localhost:7261/api/App/account/"+accountNumber+'?isVulnerable='+enabled_)
+                const response=await axios.get("https://web2lab2-backend-h1gx.onrender.com/api/App/account/"+accountNumber+'?isVulnerable='+enabled_)
                 setUserInfo(response.data)
             }
             catch (E){

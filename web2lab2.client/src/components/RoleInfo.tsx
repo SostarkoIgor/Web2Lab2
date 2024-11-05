@@ -12,7 +12,7 @@ const RoleInfo: React.FC = () => {
             const enabled_ = new URLSearchParams(window.location.search).get('enabled')
             if (enabled) setEnabled(enabled_=="true")
             try{
-                const response=await axios.get("https://localhost:7261/api/App/details/"+role+'?isVulnerable='+enabled_)
+                const response=await axios.get("https://web2lab2-backend-h1gx.onrender.com/api/App/details/"+role+'?isVulnerable='+enabled_)
                 setDetails(response.data)
             }
             catch (E){
