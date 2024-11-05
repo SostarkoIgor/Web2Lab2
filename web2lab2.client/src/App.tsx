@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+//import { useEffect, useState } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import './App.css'
 import XSScomponent from './components/XSScomponent'

@@ -4,7 +4,7 @@ import axios from 'axios'
 const Account : React.FC = () =>{
     const [accNumber, setAccNumber] = React.useState<number | null>(600)
     const [enabled, setEnabled] = React.useState<boolean>(false)
-    const [loggedIn, setLoggedIn] = React.useState<boolean>(false)
+    //const [loggedIn, setLoggedIn] = React.useState<boolean>(false)
     const [userInfo, setUserInfo] = React.useState<string>('')
 
     useEffect(()=>{
