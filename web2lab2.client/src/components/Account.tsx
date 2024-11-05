@@ -11,10 +11,10 @@ const Account : React.FC = () =>{
         async function start(){
             const accountNumber = new URLSearchParams(window.location.search).get('accNumber')
             const enabled_ = new URLSearchParams(window.location.search).get('enabled')
-            const loggedIn = new URLSearchParams(window.location.search).get('loggedIn')
+            //const loggedIn = new URLSearchParams(window.location.search).get('loggedIn')
             if (accountNumber) setAccNumber(parseInt(accountNumber))
             if (enabled) setEnabled(enabled_=="true")
-            if (loggedIn) setLoggedIn(loggedIn=="true")
+            //if (loggedIn) setLoggedIn(loggedIn=="true")
             try{
                 if (accountNumber==null) return
                 const response=await axios.get("https://localhost:7261/api/App/account/"+accountNumber+'?isVulnerable='+enabled_)

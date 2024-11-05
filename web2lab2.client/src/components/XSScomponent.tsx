@@ -23,9 +23,7 @@ const XSScomponent : React.FC = () => {
                     try{
                         eval(scriptContent[1])
                     }
-                    catch(E){
-
-                    }
+                    catch(E){ /* empty */ }
                 }
                 document.getElementById('output')!.innerHTML = inputParam
             }
