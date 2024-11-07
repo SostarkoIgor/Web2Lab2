@@ -12,12 +12,6 @@ const BrokenAccessControl : React.FC = () =>{
             return iframeLink+'?enabled='+(isEnabled?'true':'false')
     }
 
-    const formatSpecificLink = (iframeLink:string) =>{
-        if (iframeLink.indexOf('?')>=0)
-            return iframeLink+'&enabled='+(isEnabled?'true':'false')
-        else
-            return iframeLink+'?enabled='+(isEnabled?'true':'false')
-    }
 
     return (
         <div className="container">
