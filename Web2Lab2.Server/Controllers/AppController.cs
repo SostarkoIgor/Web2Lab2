@@ -41,5 +41,13 @@ namespace Web2Lab2.Server.Controllers
             }
 
         }
+        [HttpPost("postData")]
+        public IActionResult PostString([FromBody] string value)
+        {
+            //ovo bi bio endpoint za stavljanje stvari u bazu
+            //pošto demonstriram dom based xss, nije mi se činilo potrebnim zapravo pohraniti ništa tu
+            //ovo postoji jedino jer je rečeno da se ne smije za xss dati sam frontend, iako ne vidim poantu tog ograničenja tu
+            return Ok();
+        }
     }
 }

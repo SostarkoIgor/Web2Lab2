@@ -1,37 +1,48 @@
 import React, { useEffect } from 'react'
+import axios from 'axios'
 
 const XSScomponent : React.FC = () => {
     const [value, setValue] = React.useState<string>('')
     const [isEnabled, setIsEnabled] = React.useState<boolean>(false)
     const [isLoaded, setIsLoaded] = React.useState<boolean>(false)
     useEffect(() => {
-        const inputParam = new URLSearchParams(window.location.search).get('param')
-        if (!isLoaded){
-            const enableXSSparam= new URLSearchParams(window.location.search).get('xss')
-            if (enableXSSparam && enableXSSparam==='enable') setIsEnabled(true)
-            else setIsEnabled(false)
-            setIsLoaded(true)
-        }
-        if (inputParam) {
-            setValue(inputParam)
-            if (isEnabled) {
-                //pošto samo postavljanje innerHTML-a neće dovesti do pokretanja js koda, ovdje se to simulira
-                //zvanjem eval i takvim pokretanjem koda
-                //te se u html-u stranice pojavljuje očekivani <script> element
-                const scriptContent = inputParam.match(/<script>([\s\S]*?)<\/script>/)
-                if (scriptContent && scriptContent[1]) {
-                    try{
-                        eval(scriptContent[1])
-                    }
-                    catch(E){ /* empty */ }
-                }
-                document.getElementById('output')!.innerHTML = inputParam
+        const start = async () => {
+            let inputParam = new URLSearchParams(window.location.search).get('param')
+            if (!isLoaded){
+                const enableXSSparam= new URLSearchParams(window.location.search).get('xss')
+                if (enableXSSparam && enableXSSparam==='enable') setIsEnabled(true)
+                else setIsEnabled(false)
+                setIsLoaded(true)
             }
+            if (inputParam) {
+                setValue(inputParam)
+                if (isEnabled) {
+                    //pošto samo postavljanje innerHTML-a neće dovesti do pokretanja js koda, ovdje se to simulira
+                    //zvanjem eval i takvim pokretanjem koda
+                    //te se u html-u stranice pojavljuje očekivani <script> element
+                    const scriptContent = inputParam.match(/<script>([\s\S]*?)<\/script>/)
+                    if (scriptContent && scriptContent[1]) {
+                        try{
+                            eval(scriptContent[1])
+                        }
+                        catch(E){ /* empty */ }
+                    }
+                    document.getElementById('output')!.innerHTML = inputParam
+                }
+                else{
+                    //micanje znakova < i > iz parametra
+                    inputParam = inputParam.replace(/</g, '').replace(/>/g, '')
+                    document.getElementById('output')!.innerHTML = inputParam
+                }
 
+                //ovo zovem čisto jer je rečeno da treba postojati backend
+                let response = await axios.post('https://web2lab2-backend-h1gx.onrender.com/api/App/postData', inputParam)
+            }
+            else {
+                setValue('')
+            }
         }
-        else {
-            setValue('')
-        }
+        start()
     }, [isEnabled,value])
     return (
         <div className='container'>
@@ -58,7 +69,7 @@ const XSScomponent : React.FC = () => {
                 <p className='label'>
                     {isEnabled ? 'XSS je omogućen' : 'XSS je onemogućen'}
                 </p>
-                <button id='checkbox' name='checkbox' onClick={() => setIsEnabled(!isEnabled)}>
+                <button id='checkbox' name='checkbox' onClick={() =>{ setIsEnabled(!isEnabled)}}>
                     {isEnabled ? 'Onemogući XSS' : 'Omogući XSS'}
                 </button>
             </div>
