@@ -37,6 +37,7 @@ const XSScomponent : React.FC = () => {
 
                 //ovo zovem čisto jer je rečeno da treba postojati backend
                 let response = await axios.post('https://web2lab2-backend-h1gx.onrender.com/api/App/postData', inputParam)
+                console.log(response)
             }
             else {
                 setValue('')
